@@ -1,40 +1,13 @@
 '''
-Calcultor v. 0.4
+Calcultor v. 19.2.1
 '''
 
-def input_number():
-    num = input("Введите число: ")
-    if num == '':
-        return None
-    # просто попробуй
-    try:
-        # преобразовать переменную num в флоат
-        num = float(num)
-    # если вышла ошибка
-    except ValueError:
-        # можно вернуть как есть
-        num = num
-    return num
 
-def input_oper():
-    oper = input("Операция(*, /, +, -, ^): ")
-
-    if oper == '':
-        oper = None
-
-    return oper
-
-def calc_me(x=None,y=None, oper=None):
-    # если x не присвоили значение - возвращаем ошибку
-    if x is None:
-        return "ERROR: send me Number1"
-    # если y не присвоили значение - возвращаем ошибку
-    if y is None:
-        return "ERROR: send me Number1"
-    # если x или y  не входит в типы int, float - возвращаем ошибку
-    if (not isinstance(x, (int, float))) or (not isinstance(y, (int, float))):
-        return "ERROR: now it is does not supported"
-
+def calc_me(x, y, oper):
+    """
+    калькулятор выполняет операции с числами,
+    но не проверяет, что получил на вход
+    """
     if oper == '*':
         return x * y
     elif oper == '/':
@@ -47,10 +20,42 @@ def calc_me(x=None,y=None, oper=None):
         return x + y
     elif oper == '-':
         return x - y
-    elif oper == '^' or oper == '**':
-        return x ** y
     else:
         return "ERROR: Uknow operation"
+
+
+def input_number():
+    num = input("Введите число: ")
+    # просто попробуй
+    try:
+        # преобразовать переменную num в флоат
+        num = float(num)
+    # если вышла ошибка
+    except ValueError:
+        # объясняем пользователю ошибку
+        print(num+" не число")
+        # и снова вызываем функцию ввода числа
+        num = input_number()
+        # тогда получится бесконечный цикл,
+        # и пока пользователь не введет число
+        # программа будет его "донимать"
+    return num
+
+
+def input_oper():
+    # задаем список допустимых операций
+    oper_list = ["*", "/", "+", "-"]
+    # введеную информацию записывем в переменную oper
+    oper = input("Операция: ")
+    # если содержимое переменной не в списке допустимых операций
+    if oper not in oper_list:
+        # объясняем пользователю ошибку
+        print("Недопустимая операция")
+        print("Поддерживаемые операции:", ", ".join(oper_list))
+        # и снова вызываем функцию ввода оперции
+        oper = input_oper()
+    return oper
+
 
 def body():
     # результат работы функции input_number запишется в переменную number1
@@ -59,14 +64,15 @@ def body():
     oper = input_oper()
     # результат работы функции input_number запишется в переменную number2
     number2 = input_number()
-    # вызываем функцию calc_me с переменными которые мы ранее получили 
+    # вызываем функцию calc_me с переменными которые мы ранее получили
     # результат запишем в переменную result
-    result = calc_me(number1,number2, oper)
+    result = calc_me(number1, number2, oper)
     # выводим результат для пользователя
-    print(result)
+    print("ИТОГ", result)
 
-# это специальное служебное условие Питон
+
 if __name__ == '__main__':
-    # оно говорит, что если мы вызвали этот файл в консоли 
+    # это специальное служебное условие Питон
+    # оно говорит, что если мы вызвали этот файл в консоли
     # то надо выполнить функцию body
     body()
