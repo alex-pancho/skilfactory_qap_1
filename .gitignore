@@ -1,2 +1,3 @@
 venv/
 _.bat
+__pycache__
