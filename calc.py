@@ -21,7 +21,7 @@ def calc_me(x, y, oper):
     elif oper == '-':
         return x - y
     else:
-        raise ValueError("ERROR: Uknown operation")
+        raise ValueError("ERROR: Unknown operation")
 
 
 def input_number():
