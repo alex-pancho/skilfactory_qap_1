@@ -13,7 +13,7 @@ def calc_me(x, y, oper):
     elif oper == '/':
         # если делитель == 0 то возвращаем ошибку
         if y == 0:
-            raise ZeroDivisionError("ERROR: Divide by zero!")
+            raise ZeroDivisionError("ERROR: division by zero!")
         else:
             return x / y
     elif oper == '+':
@@ -21,7 +21,7 @@ def calc_me(x, y, oper):
     elif oper == '-':
         return x - y
     else:
-        raise ValueError("ERROR: Uknow operation")
+        raise ValueError("ERROR: Uknown operation")
 
 
 def input_number():
