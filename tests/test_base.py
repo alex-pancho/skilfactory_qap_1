@@ -22,6 +22,6 @@ def test_division_by_zero_with_msg():
     with pytest.raises(ZeroDivisionError, match="ERROR: division by zero!"):
         calc_me(10,0,"/")
 
-def test_uknown_operation():
+def test_unknown_operation():
     with pytest.raises(ValueError, match="ERROR: Unknown operation"):
         calc_me(10,5,"^")
