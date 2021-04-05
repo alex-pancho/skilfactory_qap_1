@@ -3,11 +3,20 @@ Calcultor v. 19.2.1
 '''
 
 
-def calc_me(x, y, oper):
+def calc_me(x=None,y=None, oper=None):
     """
-    калькулятор выполняет операции с числами,
-    но не проверяет, что получил на вход
+    функция выполняет операции с числами,
+    и проверяет, что пришло на вход
     """
+    # если x не присвоили значение - возвращаем ошибку
+    if x is None:
+        raise ValueError("send me Number1")
+    # если y не присвоили значение - возвращаем ошибку
+    if y is None:
+        raise ValueError("send me Number1")
+    # если x или y  не входит в типы int, float - возвращаем ошибку
+    if (not isinstance(y, (int, float))) or (not isinstance(y, (int, float))):
+        return "now it is does not supported"
     if oper == '*':
         return x * y
     elif oper == '/':
@@ -20,6 +29,8 @@ def calc_me(x, y, oper):
         return x + y
     elif oper == '-':
         return x - y
+    elif oper in ['^','**'] :
+        return x ** y
     else:
         raise ValueError("ERROR: Unknown operation")
 
@@ -44,7 +55,7 @@ def input_number():
 
 def input_oper():
     # задаем список допустимых операций
-    oper_list = ["*", "/", "+", "-"]
+    oper_list = ["*", "/", "+", "-", "**", '^']
     # введеную информацию записывем в переменную oper
     oper = input("Операция: ")
     # если содержимое переменной не в списке допустимых операций
