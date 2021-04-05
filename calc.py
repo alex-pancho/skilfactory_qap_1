@@ -1,5 +1,5 @@
 '''
-Calcultor v. 19.2.1
+Calcultor v. 19.2.2
 '''
 
 
@@ -15,7 +15,9 @@ def calc_me(x=None,y=None, oper=None):
     if y is None:
         raise ValueError("send me Number1")
     # если x или y  не входит в типы int, float - возвращаем ошибку
-    if (not isinstance(y, (int, float))) or (not isinstance(y, (int, float))):
+    if not isinstance(x, (int, float)):
+        raise ValueError("now it is does not supported")
+    if not isinstance(y, (int, float)):
         return "now it is does not supported"
     if oper == '*':
         return x * y
