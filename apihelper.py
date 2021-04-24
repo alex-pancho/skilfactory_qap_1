@@ -37,7 +37,7 @@ def login(user: dict):
         global apikey
         apikey = result.get("key")
     else:
-        raise Exception ("[key] not found, we have: \n" + str(result))
+        raise Exception("[key] not found, we have: \n" + str(result))
 
 
 def get_pets(filter: str = "") -> json:

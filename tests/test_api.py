@@ -18,7 +18,7 @@ def test_post_pets():
     age = 12
     path_for_picture = "D:\\OneDrive\\Current_job\\api_qa_git\\testdata\\qa_180x180.jpg"
     result = apihelper.post_pets(name, animal_type, age, path_for_picture)
-    assert result.get('name') == name
+    assert result.get('name') == name, result
     assert result.get('animal_type') == animal_type
     assert result.get('age') == str(age)
     assert "data:image/jpeg;base64" in result.get('pet_photo')
